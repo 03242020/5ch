@@ -13,6 +13,5 @@ checkLen($_SESSION['title'],"8");
 
 // isBlank関数のテスト(空欄チェック)
 $_SESSION['text'] = "z";
-isBlank('text');
-echo $_SESSION['text'];
+isBlank($_SESSION['text']);
 ?>
