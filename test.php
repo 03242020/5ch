@@ -3,7 +3,7 @@ include "common.php";
 session_start();
 
 // checkEmail関数のテスト(メルアドチェック関数@test.co.jpになっているか)
-$_SESSION[‘email’] = ”cockatiehotest.co.jp”;
+$_SESSION[‘email’] = 'cockatieho@test.co.jp';
 checkEmail($_SESSION['email']);
 
 //checkLen関数のテスト(左に文字列、右に数値)
