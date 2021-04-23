@@ -1,47 +1,30 @@
 <?php
-// DB情報
-$dsn = 'mysql:host=localhost;dbname=SLJ;charset=utf8';
-$user = 'root';
-$password = 'sljslj';
-try {
-// PDOインスタンス化(DB接続)
-$db = new PDO ( $dsn, $user, $password );
-// セキュリティ設定
-$db->setAttribute ( PDO::ATTR_EMULATE_PREPARES, false );
-} catch ( PDOException $e ) {
-die ( 'エラー' . $e->getMessage () );
+
+function checkEmail($param1) {
+//a-zA-Z0-9を1回以上使用し、@test.co.jpのアドレスを固定。
+if (!preg_match('{^[a-zA-Z0-9]+@(test\.co\.jp)$}', $param1)) {
+    return false;
+} else {
+    return true;
+  }
+}
+//第一引数にチェック対象、第二引数にリミット
+function checkLen($param1, $param2) {
+    if (mb_strlen ( $param1 ) > $param2) {
+        //第一引数が制限超えてた場合falseを返す
+        return false;
+    } else {
+          //セーフの場合trueを返す
+          return true;
+      }
 }
 
-function checkEmail($param1){
-	//$param1 = $_SESSION['email'];
-	if(strspn($param1,'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@')
-			!==strlen($param1)){
-		//他の文字がある場合の処理
-		echo "false";
-	}else if(strpos($param1,'@test.co.jp') !== false){
-		echo "true";
-	}else{
-		echo "false";
-	}
-
-
-	function checkLen($param1,$param2){
-		//	$param1 = $_SESSION['']
-
-		if(mb_strlen($param1) > $param2){
-			echo "false";
-		}else{
-			echo "true";
-		}
-	}
-
-
-function isBlank($param1){
-	if($param1 == ""){
-		echo "true";
-	}else{
-		echo "false";
-	}
+function isBlank($param1) {
+    if ($param1 == "") {
+        return true;
+    } else {
+          return false;
+      }
 }
-}
-		?>
+
+?>
